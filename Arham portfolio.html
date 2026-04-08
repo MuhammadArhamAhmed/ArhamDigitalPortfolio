@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Arham Ahmed — Meta Ads Specialist</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple-dark: #1e0f35;
+    --purple-mid: #2d1050;
+    --purple-light: #7B3A9C;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --white: #ffffff;
+    --white-dim: rgba(255,255,255,0.7);
+    --white-faint: rgba(255,255,255,0.12);
+  }
+ 
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+ 
+  html { scroll-behavior: smooth; }
+ 
+  body {
+    background: var(--purple-dark);
+    color: var(--white);
+    font-family: 'Raleway', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+ 
+  /* Custom cursor */
+  .cursor {
+    width: 12px; height: 12px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, width 0.2s, height 0.2s;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(201,168,76,0.5);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease, width 0.3s, height 0.3s, border-color 0.3s;
+  }
+ 
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(30,15,53,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+    animation: slideDown 0.8s ease forwards;
+  }
+ 
+  @keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+ 
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); font-style: italic; }
+ 
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--white-dim);
+    text-decoration: none;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
+ 
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+ 
+  /* Animated bg particles */
+  .particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+  }
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(201,168,76,0.08);
+    animation: float linear infinite;
+  }
+  @keyframes float {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
+  }
+ 
+  .hero-bg-glow {
+    position: absolute;
+    top: 50%; left: 35%;
+    transform: translate(-50%, -50%);
+    width: 700px; height: 700px;
+    background: radial-gradient(ellipse, rgba(123,58,156,0.3) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+    animation: pulse 4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+    50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+  }
+ 
+  .hero-content {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+ 
+  /* Photo */
+  .hero-photo-wrap {
+    position: relative;
+    flex-shrink: 0;
+    animation: fadeInLeft 1s ease 0.3s both;
+  }
+  @keyframes fadeInLeft {
+    from { transform: translateX(-60px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+ 
+  .photo-outer-ring {
+    width: 340px; height: 340px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.2);
+    display: flex; align-items: center; justify-content: center;
+    animation: spin 20s linear infinite;
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+ 
+  .photo-inner {
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    overflow: hidden;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 40px rgba(201,168,76,0.2), 0 0 80px rgba(123,58,156,0.3);
+  }
+  .photo-inner img {
+    /* width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: top;
+    filter: contrast(1.05) saturate(0.9); */
+  width: 100%; 
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+    
+  /* Floating badge */
+  .photo-badge {
+    position: absolute;
+    bottom: 10px; right: -20px;
+    background: var(--gold);
+    color: var(--purple-dark);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border-radius: 20px;
+    animation: badgePop 1s ease 1.2s both;
+    white-space: nowrap;
+  }
+  @keyframes badgePop {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+ 
+  /* Hero text */
+  .hero-text {
+    flex: 1;
+    animation: fadeInRight 1s ease 0.5s both;
+  }
+  @keyframes fadeInRight {
+    from { transform: translateX(60px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+ 
+  .hero-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 6px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-label::before {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--gold);
+  }
+ 
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 68px;
+    font-weight: 700;
+    line-height: 1.05;
+    margin-bottom: 8px;
+  }
+  .hero-name .first { color: var(--white); }
+  .hero-name .last { color: var(--gold); font-style: italic; }
+ 
+  .hero-title {
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--white-dim);
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+  }
+ 
+  .hero-divider {
+    width: 60px; height: 2px;
+    background: var(--gold);
+    margin-bottom: 24px;
+  }
+ 
+  .hero-tagline {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--white-dim);
+    line-height: 1.8;
+    max-width: 480px;
+    margin-bottom: 36px;
+  }
+  .hero-tagline strong { color: var(--white); font-weight: 500; }
+ 
+  .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+ 
+  .btn-primary {
+    background: var(--gold);
+    color: var(--purple-dark);
+    font-family: 'Raleway', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: rgba(255,255,255,0.2);
+    transition: left 0.3s;
+  }
+  .btn-primary:hover::before { left: 100%; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.4); }
+ 
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    font-family: 'Raleway', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 13px 32px;
+    border: 1px solid rgba(255,255,255,0.3);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+ 
+  /* SECTION COMMON */
+  section { padding: 100px 60px; position: relative; }
+ 
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 6px;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .section-label::before { content: ''; width: 40px; height: 1px; background: var(--gold); }
+ 
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+  .section-title span { color: var(--gold); font-style: italic; }
+ 
+  .section-divider {
+    width: 60px; height: 2px;
+    background: var(--gold);
+    margin-bottom: 60px;
+  }
+ 
+  /* ABOUT */
+  .about { background: var(--purple-mid); }
+ 
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+ 
+  .about-text p {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--white-dim);
+    line-height: 1.9;
+    margin-bottom: 20px;
+  }
+  .about-text p strong { color: var(--white); font-weight: 500; }
+ 
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+ 
+  .stat-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--gold);
+  }
+  .stat-card:hover { transform: translateY(-4px); border-color: rgba(201,168,76,0.4); background: rgba(255,255,255,0.07); }
+ 
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: var(--white-dim);
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+ 
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+ 
+  .service-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s;
+    cursor: default;
+  }
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .service-card:hover { background: rgba(123,58,156,0.2); border-color: rgba(201,168,76,0.25); transform: translateY(-6px); }
+  .service-card:hover::after { transform: scaleX(1); }
+ 
+  .service-icon {
+    width: 52px; height: 52px;
+    border: 1px solid rgba(201,168,76,0.3);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+    font-size: 22px;
+    transition: all 0.3s;
+  }
+  .service-card:hover .service-icon { border-color: var(--gold); background: rgba(201,168,76,0.1); }
+ 
+  .service-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--white);
+  }
+  .service-desc {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--white-dim);
+    line-height: 1.7;
+  }
+ 
+  /* SKILLS */
+  .skills { background: var(--purple-mid); }
+ 
+  .skills-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+ 
+  .skill-row { display: flex; flex-direction: column; gap: 8px; }
+ 
+  .skill-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .skill-name { font-size: 14px; font-weight: 500; letter-spacing: 1px; color: var(--white); }
+  .skill-pct { font-size: 13px; color: var(--gold); font-weight: 500; }
+ 
+  .skill-bar-bg {
+    width: 100%; height: 4px;
+    background: rgba(255,255,255,0.08);
+    overflow: hidden;
+  }
+  .skill-bar-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--purple-light), var(--gold));
+    width: 0;
+    transition: width 1.5s cubic-bezier(0.4,0,0.2,1);
+  }
+ 
+  /* WHY ME */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+ 
+  .why-card {
+    display: flex;
+    gap: 20px;
+    padding: 28px;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.02);
+    transition: all 0.3s;
+  }
+  .why-card:hover { border-color: rgba(201,168,76,0.25); background: rgba(201,168,76,0.04); }
+ 
+  .why-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: rgba(201,168,76,0.2);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .why-title { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+  .why-desc { font-size: 13px; font-weight: 300; color: var(--white-dim); line-height: 1.7; }
+ 
+  /* CONTACT */
+  .contact { background: var(--purple-mid); text-align: center; }
+ 
+  .contact-inner { max-width: 600px; margin: 0 auto; }
+ 
+  .contact-tagline {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--white-dim);
+    line-height: 1.8;
+    margin-bottom: 40px;
+  }
+ 
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+ 
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--white-dim);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+  }
+  .contact-link:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-3px); }
+ 
+  /* FOOTER */
+  footer {
+    padding: 28px 60px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--white);
+  }
+  .footer-brand span { color: var(--gold); font-style: italic; }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); letter-spacing: 1px; }
+ 
+  /* Gold top line */
+  .gold-topline {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--purple-dark), var(--gold), var(--purple-dark));
+    z-index: 200;
+  }
+ 
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+ 
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 24px 60px; }
+    .hero-content { flex-direction: column; gap: 40px; text-align: center; }
+    .hero-name { font-size: 44px; }
+    .hero-label { justify-content: center; }
+    .hero-divider { margin: 0 auto 24px; }
+    .hero-buttons { justify-content: center; }
+    .photo-outer-ring { width: 260px; height: 260px; }
+    .photo-inner { width: 220px; height: 220px; }
+    section { padding: 60px 24px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+ 
+<div class="gold-topline"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+ 
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">ArhamDigital<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+ 
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="particles" id="particles"></div>
+  <div class="hero-bg-glow"></div>
+ 
+  <div class="hero-content">
+    <div class="hero-photo-wrap">
+      <div class="photo-outer-ring">
+        <!-- ring spins, photo stays still -->
+      </div>
+      <div class="photo-inner">
+        <img src="arham.image.jfif" alt="Muhammad Arham Ahmed" onerror="this.style.background='linear-gradient(135deg,#2d1050,#7B3A9C)';this.style.display='block'">
+      </div>
+      <div class="photo-badge">Available for Projects</div>
+    </div>
+ 
+    <div class="hero-text">
+      <div class="hero-label">Meta Ads Specialist</div>
+      <div class="hero-name">
+        <div class="first">Muhammad Arham</div>
+        <div class="last">Ahmed.</div>
+      </div>
+      <div class="hero-title">Paid Advertising · Arham Digital</div>
+      <div class="hero-divider"></div>
+      <p class="hero-tagline">
+        Helping businesses <strong>stop wasting ad spend</strong> and start scaling with data-driven
+        <strong>Facebook & Instagram Ads</strong>. Based in Karachi 🇵🇰, serving clients globally.
+      </p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn-primary">Hire Me</a>
+        <a href="#services" class="btn-outline">View Services</a>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="reveal">
+      <div class="section-label">About Me</div>
+      <h2 class="section-title">I Turn Ad Spend Into <span>Real Results</span></h2>
+      <div class="section-divider"></div>
+      <div class="about-text">
+        <p>I'm <strong>Muhammad Arham Ahmed</strong>, founder of Arham Digital — a Karachi-based paid advertising agency focused on Meta platforms.</p>
+        <p>My mission is simple: <strong>Stop Spending. Start Scaling.</strong> I help businesses of all sizes run profitable Facebook and Instagram ad campaigns that generate real leads and measurable ROI.</p>
+        <p>Whether you're a local business looking for customers or an e-commerce brand wanting to scale, I craft campaigns tailored to your goals.</p>
+      </div>
+    </div>
+    <div class="about-stats reveal">
+      <div class="stat-card">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Client Focus</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Services Offered</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">2x</div>
+        <div class="stat-label">Avg ROAS Goal</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">PKR</div>
+        <div class="stat-label">Serving Local, International Clients & Remote </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- SERVICES -->
+<section id="services" style="padding: 100px 60px;">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div class="reveal">
+      <div class="section-label">What I Do</div>
+      <h2 class="section-title">My <span>Services</span></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">📱</div>
+        <div class="service-name">Facebook & Instagram Ads</div>
+        <div class="service-desc">Full campaign setup, creative strategy, and management across Meta platforms for maximum reach and conversions.</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🎯</div>
+        <div class="service-name">Lead Generation</div>
+        <div class="service-desc">Targeted lead gen campaigns that bring qualified prospects directly to your business at the lowest cost per lead.</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">⚙️</div>
+        <div class="service-name">Campaign Optimization</div>
+        <div class="service-desc">Audit and optimize existing campaigns to reduce wasted spend and improve overall performance and results.</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">📈</div>
+        <div class="service-name">ROAS Optimization</div>
+        <div class="service-desc">Data-driven strategies to maximize your Return on Ad Spend, ensuring every rupee works harder for your business.</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">👥</div>
+        <div class="service-name">Audience Targeting</div>
+        <div class="service-desc">Deep audience research and custom/lookalike audience building to reach the people most likely to buy from you.</div>
+      </div>
+      <!-- <div class="service-card reveal">
+        <div class="service-icon">✍️</div>
+        <div class="service-name">Ad Copywriting</div>
+        <div class="service-desc">Compelling ad copy and creative strategy that stops the scroll, grabs attention, and drives people to take action.</div>
+      </div> -->
+      <div class="service-card reveal">
+        <div class="service-icon">🔌</div>
+        <div class="service-name">Pixel & Tracking Setup</div>
+        <div class="service-desc">Meta Pixel installation, event tracking, and Conversions API setup. You can't optimize what you're not measurings.</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🛒</div>
+        <div class="service-name">Shopify Setup</div>
+        <div class="service-desc">Complete store setup, theme customization, and full Meta Pixel integration — so your ad spend actually tracks and converts..</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">📱</div>
+        <div class="service-name">Social Media Management</div>
+        <div class="service-desc">Content strategy, caption writing, and page management across Facebook and Instagram. Consistent presence that drives action.</div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- SKILLS -->
+<section class="skills" id="skills">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <div class="reveal">
+      <!-- <div class="section-label">Expertise</div> -->
+      <h2 class="section-title">My <span>Skills</span></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="skills-wrap reveal" id="skillsWrap">
+      <div class="skill-row" data-pct="90">
+        <div class="skill-info"><span class="skill-name">Facebook & Instagram Ads</span><span class="skill-pct">90%</span></div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill"></div></div>
+      </div>
+      <div class="skill-row" data-pct="85">
+        <div class="skill-info"><span class="skill-name">Audience Targeting & Research</span><span class="skill-pct">85%</span></div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill"></div></div>
+      </div>
+      <div class="skill-row" data-pct="80">
+        <div class="skill-info"><span class="skill-name">Lead Generation Campaigns</span><span class="skill-pct">80%</span></div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill"></div></div>
+      </div>
+      <div class="skill-row" data-pct="78">
+        <div class="skill-info"><span class="skill-name">ROAS & Campaign Optimization</span><span class="skill-pct">78%</span></div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill"></div></div>
+      </div>
+      <div class="skill-row" data-pct="75">
+        <div class="skill-info"><span class="skill-name">Meta Business Suite</span><span class="skill-pct">75%</span></div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill"></div></div>
+      </div>
+      <div class="skill-row" data-pct="70">
+        <div class="skill-info"><span class="skill-name">Social Media Management</span><span class="skill-pct">80%</span></div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill"></div></div>
+      </div>
+      <div class="skill-row" data-pct="80">
+        <div class="skill-info"><span class="skill-name">Pixel & Tracking Setup</span><span class="skill-pct">75%</span></div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill"></div></div>
+      </div>
+      <div class="skill-row" data-pct="80">
+        <div class="skill-info"><span class="skill-name">Shopify Setup</span><span class="skill-pct">90%</span></div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- WHY ME -->
+<section id="why" style="padding: 100px 60px;">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <div class="reveal" style="text-align:center; margin-bottom: 60px;">
+      <div class="section-label" style="justify-content:center;">Why Choose Me</div>
+      <h2 class="section-title">Why Work With <span>Arham Digital</span></h2>
+      <div class="section-divider" style="margin: 16px auto 0;"></div>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-num">01</div>
+        <div>
+          <div class="why-title">Results-Focused</div>
+          <div class="why-desc">Every campaign I run is built around one thing — your business goals. No vanity metrics, only real results.</div>
+        </div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-num">02</div>
+        <div>
+          <div class="why-title">Data-Driven Approach</div>
+          <div class="why-desc">I make decisions based on data, not guesswork. Every rupee of your budget is tracked and optimized.</div>
+        </div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-num">03</div>
+        <div>
+          <div class="why-title">Transparent Reporting</div>
+          <div class="why-desc">You'll always know what's happening with your ads. Clear, honest reporting — no hiding behind jargon.</div>
+        </div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-num">04</div>
+        <div>
+          <div class="why-title">Always Available</div>
+          <div class="why-desc">Based in Karachi, available for local and remote clients. Quick responses and dedicated support.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner reveal">
+    <div class="section-label" style="justify-content:center;">Get In Touch</div>
+    <h2 class="section-title">Let's <span>Work Together</span></h2>
+    <div class="section-divider" style="margin: 16px auto 32px;"></div>
+    <p class="contact-tagline">
+      Ready to stop wasting ad spend and start scaling your business?<br>
+      Let's talk about how I can help you grow with Meta Ads.
+    </p>
+    <div class="contact-links">
+      <a href="https://www.linkedin.com/in/muhammad-arham-ahmed-a7680832b" class="contact-link" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://www.facebook.com/muhammadarham.ahmed" class="contact-link" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M22 12.073C22 6.505 17.523 2 12 2S2 6.505 2 12.073c0 5.016 3.657 9.17 8.438 9.927v-7.02H7.898v-2.907h2.54V9.845c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.772-1.63 1.562v1.877h2.773l-.443 2.907h-2.33V22c4.78-.756 8.437-4.91 8.437-9.927z"/>
+        </svg>
+        Facebook
+      </a>
+      <a href="https://www.instagram.com/@ArhamDigital" class="contact-link" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7.75 2C4.574 2 2 4.574 2 7.75v8.5C2 19.426 4.574 22 7.75 22h8.5C19.426 22 22 19.426 22 16.25v-8.5C22 4.574 19.426 2 16.25 2h-8.5zm0 2h8.5C18.216 4 20 5.784 20 7.75v8.5c0 1.966-1.784 3.75-3.75 3.75h-8.5C5.784 20 4 18.216 4 16.25v-8.5C4 5.784 5.784 4 7.75 4zm4.25 2.5A5.75 5.75 0 106.25 12 5.756 5.756 0 0012 6.5zm0 2A3.75 3.75 0 118.25 12 3.754 3.754 0 0112 8.5zm5.5-.88a1.12 1.12 0 11-2.24 0 1.12 1.12 0 012.24 0z"/>
+        </svg>
+        Instagram
+      </a>
+      <a href="mailto:arham@arhamdigital.com" class="contact-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/></svg>
+        Email Me
+      </a>
+      <a href="https://wa.me/+92318-2616068" class="contact-link" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.476 2 2 6.476 2 12c0 1.89.497 3.663 1.362 5.203L2 22l4.932-1.327A9.94 9.94 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 11.999 2zm.001 18a7.96 7.96 0 01-4.065-1.113l-.29-.173-3.023.813.827-3.022-.19-.311A7.96 7.96 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+    <a href="mailto:arham@arhamdigital.com" class="btn-primary">Start a Project →</a>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Arham<span>Digital.</span></div>
+  <div class="footer-copy">© 2025 Muhammad Arham Ahmed · Meta Ads Specialist · Karachi, Pakistan</div>
+</footer>
+ 
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + 'px'; cursor.style.top = my + 'px'; });
+  function animRing() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animRing); }
+  animRing();
+  document.querySelectorAll('a, button').forEach(el => { el.addEventListener('mouseenter', () => { cursor.style.width = '6px'; cursor.style.height = '6px'; ring.style.width = '52px'; ring.style.height = '52px'; ring.style.borderColor = 'rgba(201,168,76,0.8)'; }); el.addEventListener('mouseleave', () => { cursor.style.width = '12px'; cursor.style.height = '12px'; ring.style.width = '36px'; ring.style.height = '36px'; ring.style.borderColor = 'rgba(201,168,76,0.5)'; }); });
+ 
+  // Particles
+  const pc = document.getElementById('particles');
+  for(let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 60 + 10;
+    p.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;animation-duration:${Math.random()*20+15}s;animation-delay:${Math.random()*15}s;`;
+    pc.appendChild(p);
+  }
+ 
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => { if(e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 100); obs.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  reveals.forEach(r => obs.observe(r));
+ 
+  // Skill bars
+  const skillObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        e.target.querySelectorAll('.skill-row').forEach((row, i) => {
+          const pct = row.dataset.pct;
+          setTimeout(() => { row.querySelector('.skill-bar-fill').style.width = pct + '%'; }, i * 150);
+        });
+        skillObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  const sw = document.getElementById('skillsWrap');
+  if(sw) skillObs.observe(sw);
+</script>
+</body>
+</html>
+ 
